@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">spyfall</string>
+    <!-- Custom strings daniel -->
+    <string name="title">Spyfall</string>
+    <string name="title2">Game login</string>
+    <string name="hintUsername">Username...</string>
+    <string name="hintServercode">Server code...</string>
+    <string name="joinServer">Join server</string>
+    <string name="createServer">Create server</string>
+    <string name="back">Back</string>
+    <string name="config">Config</string>
+    <string name="Quit">Quit</string>
+    <string name="UsernameAlert">You need to enter a username longer then 3 characters</string>
+    <string name="hostname">Host:</string>
+    <string name="servercode">Server Code:</string>
+    <string name="kick">Kick</string>
+    <string name="host">Host</string>
+    <string name="Client">Client</string>
+    <string name="template"></string>
+    <string name="amountOP">Amount of players</string>
+    <string name="update">Update</string>
+    <string name="Onespy">One spy</string>
+    <string name="twospy">Two spies</string>
+    <string name="spycount">Spy count</string>
+    <string name="Vote">Vote</string>
+    <string name="Start">Start</string>
+
+
+    <string name="sample">sample</string>
+
+    <string-array name="min">
+        <item>6:00</item>
+        <item>7:00</item>
+        <item>8:00</item>
+        <item>9:00</item>
+        <item>10:00</item>
+    </string-array>
+    <!-- End of Custom strings-->
+    <!-- Custom strings arkadi-->
+    <!-- End of Custom strings-->
+    <!-- start shared preference string -->
+    <string name="sharedpref">shared</string>
+    <!-- End shared preference string -->
+    <!--TODO: Adding Strings here-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

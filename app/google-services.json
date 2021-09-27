@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "285908692453",
+    "project_id": "android-prog",
+    "storage_bucket": "android-prog.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285908692453:android:929b25983ba940aebf530c",
+        "android_client_info": {
+          "package_name": "com.danielinc.spyfall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285908692453-59p4a8l97hi65odksj9h82995r5p5rj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEnhrafJVJGUxToK7kk9k1Xi78nb-TGOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285908692453-59p4a8l97hi65odksj9h82995r5p5rj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285908692453:android:a6cf530bd04eb215bf530c",
+        "android_client_info": {
+          "package_name": "com.example.testfireapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285908692453-59p4a8l97hi65odksj9h82995r5p5rj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEnhrafJVJGUxToK7kk9k1Xi78nb-TGOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285908692453-59p4a8l97hi65odksj9h82995r5p5rj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
