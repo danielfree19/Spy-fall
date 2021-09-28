@@ -1,6 +1,8 @@
 package com.danielinc.spyfall;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -76,6 +77,7 @@ public class MainLogin extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main_login, container, false);
         setItems(view);
         setListeners();
+        CreateDefaultConfig();
         return view;
     }
 
@@ -86,9 +88,19 @@ public class MainLogin extends Fragment {
        username = view.findViewById(R.id.UsernameTxt);
        username.setText("");
    }
+
+   public void CreateDefaultConfig(){
+       Context context = this.getContext();
+       SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.sharedpref),Context.MODE_PRIVATE);
+       if(sharedPref.getAll().toString() == "{}"){
+           SharedPreferences.Editor editor = sharedPref.edit();
+           editor.putInt("RoundTime",5).commit();
+           editor.putInt("NumOfPlayers",7).commit();
+       }
+   }
+
    public void joinFunction(){
        Intent intent = new Intent(getActivity().getApplicationContext(),Lobby.class);
-
        String userName = username.getText().toString();
        String Code = roomCode.getText().toString();
        final boolean[] exists = {false};
@@ -107,7 +119,6 @@ public class MainLogin extends Fragment {
                            Log.d("connect","connected");
                            intent.putExtra("Player",player);
                            startActivity(intent);
-
                            break;
                        }
                    } if (!exists[0])
@@ -126,7 +137,9 @@ public class MainLogin extends Fragment {
        if(username.getText().toString().length()>3){
            Host host = new Host(username.getText().toString());
            //TODO: creating server in firebase here
-           CRUD.CreateRoom(host.roomCode,host.name,7,3);
+           Context context = this.getContext();
+           SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.sharedpref),Context.MODE_PRIVATE);
+           CRUD.CreateRoom(host.roomCode,host.name,sharedPref.getInt("NumOfPlayers",1),sharedPref.getInt("RoundTime",1));
            host.startGame();
            intent.putExtra("Host",host);
            startActivity(intent);
@@ -137,7 +150,7 @@ public class MainLogin extends Fragment {
    }
    public void setListeners(){
         Create.setOnClickListener(v->{
-            createFunction();
+           createFunction();
        });
        Join.setOnClickListener(v->{
            joinFunction();
