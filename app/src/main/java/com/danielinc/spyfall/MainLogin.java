@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -136,7 +137,7 @@ public class MainLogin extends Fragment {
    }
    public void setListeners(){
         Create.setOnClickListener(v->{
-           createFunction();
+            createFunction();
        });
        Join.setOnClickListener(v->{
            joinFunction();

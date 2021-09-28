@@ -11,6 +11,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CRUD {
         static void CreateRoom(String roomCode, String host, int maxPlayers, int roundTime){
@@ -64,7 +66,26 @@ public class CRUD {
             });
             return exists[0];
         }
+        static Set<String> getLocationList() {
+            Set<String> locations=new HashSet<String>();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference locationRef = database.getReference("/locations");
+            locationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    int index = 0;
+                    for(DataSnapshot data: snapshot.getChildren()){
+                        locations.add(data.child(Integer.toString(index)).child("title").getValue().toString());
+                        index++;
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
+                }
+            });
+            return locations;
+        }
         //booleans dont work
         static boolean isConnected(String name){
             final boolean[] exists = {false};
