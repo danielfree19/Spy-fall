@@ -7,7 +7,6 @@ public class Player implements Serializable {
     String name;
     String role;
     String roomCode;
-    ArrayList<Player>playerList;
     public Player(String name,String roomCode){
         this.name = name;
         this.role = null;
@@ -24,11 +23,5 @@ public class Player implements Serializable {
     }
     public void setRole(String role) {
         this.role = role;
-    }
-    public void setPlayerList(ArrayList<Player> list){
-        this.playerList = list;
-    }
-    public void listenToRoleChange(){
-        CRUD.roleChangeListener(this,this.roomCode);
     }
 }

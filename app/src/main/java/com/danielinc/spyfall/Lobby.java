@@ -25,7 +25,7 @@ public class Lobby extends AppCompatActivity {
     TextView UNlbl,servCode;
     ArrayList<Player> playerList;
     MyAdapter adapter;
-    Button Quit;
+    Button Quit,Start;
     ListView PlayerListView;
     Intent intent;
     Player player;
@@ -41,7 +41,6 @@ public class Lobby extends AppCompatActivity {
         setItems();
         isHost();
         setList();
-        setListeners();
     }
     public class MyAdapter extends BaseAdapter {
         ArrayList<Player> items;
@@ -86,6 +85,7 @@ public class Lobby extends AppCompatActivity {
         UNlbl = findViewById(R.id.usernamelbl);
         servCode = findViewById(R.id.ServerCodeLbl);
         Quit = findViewById(R.id.QuitBtn);
+        Start = findViewById(R.id.VoteBtn);
         intent = getIntent();
     }
     public void isHost(){
@@ -100,7 +100,9 @@ public class Lobby extends AppCompatActivity {
         UNlbl.setText(getString(R.string.hostname)+" "+player.name);
         servCode.setText(getString(R.string.servercode)+" "+player.roomCode);
         adapter = new MyAdapter();
+        setListeners();
         listenToConnectingPlayers(player.roomCode);
+        listenToRoom(player.roomCode);
     }
     public void setAdmin(){
         host = (Host) intent.getSerializableExtra("Host");
@@ -129,15 +131,21 @@ public class Lobby extends AppCompatActivity {
                 finish();
             }
         });
+        Start.setOnClickListener(view -> {
+            host.startGame();
+        });
     }
     public void setListeners(){
             Quit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     CRUD.removePlayer(player.roomCode,player.name);
-                    finish();
+                    quitFunction();
                 }
             });
+        }
+    public void quitFunction(){
+         finish();
         }
     public void instantKick(int i){
         //removing players here
@@ -147,6 +155,23 @@ public class Lobby extends AppCompatActivity {
     }
     public void setPlayerList(ArrayList<Player>list){
         this.playerList=list;
+    }
+    void listenToRoom(String roomCode){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference roomRef = database.getReference("rooms/" + roomCode);
+        roomRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.hasChildren())
+                    quitFunction();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     void listenToConnectingPlayers(String roomCode) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
